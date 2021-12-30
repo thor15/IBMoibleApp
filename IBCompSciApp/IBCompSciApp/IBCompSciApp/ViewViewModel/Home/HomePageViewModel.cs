@@ -11,6 +11,7 @@ namespace IBCompSciApp.ViewViewModel.Home
         public HomePageViewModel()
         {
             Title = "Home";
+            
         }
     }
 }

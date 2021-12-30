@@ -15,6 +15,7 @@ namespace IBCompSciApp.ViewViewModel.NewUser
         public NewUserView()
         {
             InitializeComponent();
+            BindingContext = new NewUserViewModel();
         }
     }
 }

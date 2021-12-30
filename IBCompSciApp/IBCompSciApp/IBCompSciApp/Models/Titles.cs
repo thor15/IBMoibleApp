@@ -4,7 +4,12 @@ using System.Text;
 
 namespace IBCompSciApp.Models
 {
-    class Titles
+    public static class Titles
     {
+        public static string MainPageText = "Login";
+
+        public static string HomePage = "Home";
+
+        public static string NewUser = "New User";
     }
 }

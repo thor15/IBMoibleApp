@@ -1,12 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IBCompSciApp.ViewViewModel.NewUser.NewUserView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="IBCompSciApp.ViewViewModel.NewUser.NewUserView"
+             Title="{Binding Title}">
+
+    <AbsoluteLayout>
+
+        <Label Text="Sign Up"
+               FontSize="Title"
+               HorizontalTextAlignment="Center"
+               AbsoluteLayout.LayoutBounds="0.5, 0.35, 200, 50"
+               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+        <Entry Placeholder="Email"
+               Text="{Binding EmailText}"
+               AbsoluteLayout.LayoutBounds="0.5,.45, 200, 50"
+               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+        <Entry Placeholder="Password"
+               Text="{Binding PasswordText}"
+               AbsoluteLayout.LayoutBounds="0.5,0.55, 200, 50"
+               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+        <Entry Placeholder="Reenter Password"
+               Text="{Binding SecondPassword}"
+               AbsoluteLayout.LayoutBounds="0.5,0.65, 200, 50"
+               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+        <Button Text="Sign Up"
+                Command="{Binding SignUpClicked}"
+                AbsoluteLayout.LayoutBounds="0.5,0.75, 200, 50"
+                AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+    </AbsoluteLayout>
+
 </ContentPage>
