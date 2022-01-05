@@ -2,6 +2,7 @@
 using MyFirstProject.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -61,7 +62,7 @@ namespace IBCompSciApp.ViewViewModel.NewUser
             }
         }
 
-        public ICommand SignUpClicked;
+        public ICommand SignUpClicked { get; set; }
 
         public NewUserViewModel()
         {
@@ -71,19 +72,54 @@ namespace IBCompSciApp.ViewViewModel.NewUser
 
         private void AddUser()
         {
-            if(string.IsNullOrEmpty(_passwordText.Trim()))
+            if (string.IsNullOrEmpty(_emailText.Trim()))
+            {
+                Application.Current.MainPage.DisplayAlert("Sign Up", "Email Empty", "Ok");
+                return;
+            }
+
+            if (!IsValidEmail(_emailText))
+            {
+                Application.Current.MainPage.DisplayAlert("Sign Up", "In valid email", "Ok");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_passwordText.Trim()))
             {
                 Application.Current.MainPage.DisplayAlert("Sign Up", "Password Empty", "Ok");
                 return;
             }
 
-            if(_passwordText.Equals(_secondPassword))
+            Debug.WriteLine(_passwordText + "       " + _secondPassword);
+
+            if(!_passwordText.Equals(_secondPassword))
             {
-                Application.Current.MainPage.DisplayAlert("Sign Up", "Password Do not match", "Ok");
+                Application.Current.MainPage.DisplayAlert("Sign Up", "Passwords do not match", "Ok");
                 return;
             }
 
+            CurrentUsers.AllUsers.Add(new User(_emailText, _passwordText));
+            Application.Current.MainPage.Navigation.PopAsync();
+            return;
+        }
 
+        private bool IsValidEmail(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false; // suggested by @TK-421
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

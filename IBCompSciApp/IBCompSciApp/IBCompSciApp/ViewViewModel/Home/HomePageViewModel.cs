@@ -1,4 +1,5 @@
-﻿using MyFirstProject.ViewModels;
+﻿using IBCompSciApp.Models;
+using MyFirstProject.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,12 @@ namespace IBCompSciApp.ViewViewModel.Home
         public HomePageViewModel()
         {
             Title = "Home";
-            
+            SaveUsers();
+        }
+
+        private void SaveUsers()
+        {
+            //string allUsers = CurrentUsers.ToString();
         }
     }
 }

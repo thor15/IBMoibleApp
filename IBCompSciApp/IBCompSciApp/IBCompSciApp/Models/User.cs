@@ -4,7 +4,24 @@ using System.Text;
 
 namespace IBCompSciApp.Models
 {
-    class User
+    public class User
     {
+        public string email
+        {
+            get;
+            private set;
+        }
+
+        public string password
+        {
+            get;
+            private set;
+        }
+
+        public User(string e, string p)
+        {
+            email = e;
+            password = p;
+        }
     }
 }
