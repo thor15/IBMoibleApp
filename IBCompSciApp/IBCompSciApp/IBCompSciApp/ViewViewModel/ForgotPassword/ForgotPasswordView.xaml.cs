@@ -15,6 +15,7 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword
         public ForgotPasswordView()
         {
             InitializeComponent();
+            BindingContext = new ForgotPasswordViewModel();
         }
     }
 }

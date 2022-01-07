@@ -80,7 +80,7 @@ namespace IBCompSciApp.ViewViewModel.NewUser
 
             if (!IsValidEmail(_emailText))
             {
-                Application.Current.MainPage.DisplayAlert("Sign Up", "In valid email", "Ok");
+                Application.Current.MainPage.DisplayAlert("Sign Up", "Invalid email", "Ok");
                 return;
             }
 
@@ -90,7 +90,7 @@ namespace IBCompSciApp.ViewViewModel.NewUser
                 return;
             }
 
-            Debug.WriteLine(_passwordText + "       " + _secondPassword);
+            
 
             if(!_passwordText.Equals(_secondPassword))
             {

@@ -49,6 +49,22 @@ namespace IBCompSciApp.ViewViewModel.MainPage
             LoginClicked = new Command(LoginClickedAsync);
             ForgotPassClicked = new Command(ForgotPassClickedAsync);
             NewUserClicked = new Command(NewUserClickedAsync);
+            LoadUsers();
+        }
+
+        private void LoadUsers()
+        {
+            FileManager.LoadFromFile("Users", out var allUsers);
+            if(string.IsNullOrEmpty(allUsers))
+            {
+                return;
+            }
+            string[] users = allUsers.Split(',');
+            for(int i = 0; i < users.Length; i++)
+            {
+                string[] user = users[i].Split(' ');
+                CurrentUsers.AllUsers.Add(new User(user[0], user[1]));
+            }
         }
 
         private async void LoginClickedAsync(object obj)
@@ -57,7 +73,7 @@ namespace IBCompSciApp.ViewViewModel.MainPage
             User user = null;
             foreach (User us in CurrentUsers.AllUsers)
             {
-                if(us.email.Equals(_emailText))
+                if(us.Email.Equals(_emailText))
                 {
                     hasEmail = true;
                     user = us;
@@ -71,7 +87,7 @@ namespace IBCompSciApp.ViewViewModel.MainPage
             }
 
             
-            if(!user.password.Equals(_passwordText))
+            if(!user.Password.Equals(_passwordText))
             {
                 await Application.Current.MainPage.DisplayAlert("Login", "Password Is incorrect", "Ok");
                 return;

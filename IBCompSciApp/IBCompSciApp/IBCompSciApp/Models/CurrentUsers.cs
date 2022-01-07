@@ -10,7 +10,12 @@ namespace IBCompSciApp.Models
 
         public override string ToString()
         {
-            return "";
+            string users = "";
+            foreach (User user in AllUsers)
+            {
+                users += user.Email + " " + user.Password + ",";
+            }
+            return users;
         }
     }
 }

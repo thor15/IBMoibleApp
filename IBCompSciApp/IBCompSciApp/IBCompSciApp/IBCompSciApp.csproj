@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="ViewViewModel\BaseViewModel\" />
+    <Folder Include="ViewViewModel\ForgotPassword\CodeEntry\" />
   </ItemGroup>
 
   <ItemGroup>

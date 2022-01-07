@@ -6,13 +6,13 @@ namespace IBCompSciApp.Models
 {
     public class User
     {
-        public string email
+        public string Email
         {
             get;
             private set;
         }
 
-        public string password
+        public string Password
         {
             get;
             private set;
@@ -20,8 +20,8 @@ namespace IBCompSciApp.Models
 
         public User(string e, string p)
         {
-            email = e;
-            password = p;
+            Email = e;
+            Password = p;
         }
     }
 }

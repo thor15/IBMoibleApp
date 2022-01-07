@@ -17,7 +17,10 @@ namespace IBCompSciApp.ViewViewModel.Home
 
         private void SaveUsers()
         {
-            //string allUsers = CurrentUsers.ToString();
+            CurrentUsers users = new CurrentUsers();
+            string allUsers = users.ToString();
+            FileManager.WriteToFile("Users", allUsers);
         }
     }
 }
+               
