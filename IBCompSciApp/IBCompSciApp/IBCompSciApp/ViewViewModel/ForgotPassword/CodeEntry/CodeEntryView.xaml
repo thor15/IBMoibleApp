@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IBCompSciApp.ViewViewModel.ForgotPassword.ForgotPasswordView">
+             x:Class="IBCompSciApp.ViewViewModel.ForgotPassword.CodeEntry.CodeEntryView">
 
-    <AbsoluteLayout>
+        <AbsoluteLayout>
 
-        <Entry Placeholder="Email"
-               Text="{Binding EmailText}"
+        <Entry Placeholder="Code"
+               Text="{Binding CodeText}"
                AbsoluteLayout.LayoutBounds="0.5,.45, 200, 50"
                AbsoluteLayout.LayoutFlags="PositionProportional"/>
-        
-        <Button Text="Send Email"
-                Command="{Binding SendEmailClicked}"
+
+        <Button Text="Check Code"
+                Command="{Binding CheckCodeClickedClicked}"
                 AbsoluteLayout.LayoutBounds="0.5,0.55, 200, 50"
                 AbsoluteLayout.LayoutFlags="PositionProportional"/>
 

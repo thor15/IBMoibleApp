@@ -13,23 +13,26 @@ namespace IBCompSciApp.Models
         {
             try
             {
+                object boo = null;
                 MailMessage message = new MailMessage();
                 SmtpClient smtp = new SmtpClient();
-                message.From = new MailAddress("aiden.p.carr@gmail.com");
+                message.From = new MailAddress("ibbookapp@gmail.com");
                 message.To.Add(new MailAddress(email));
                 message.Subject = "Password Reset Code";
                 message.Body = "Here is your code: " + code;
-                smtp.Port = 587;
+                smtp.Port = 465;
                 smtp.Host = "smtp.gmail.com"; //for gmail host  
                 smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = true;
-                //smtp.Credentials = new NetworkCredential("FromMailAddress", "password");
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("ibbookapp@gmail", "s3ndEm@ilsThroughCod3!");
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Send(message);
+                smtp.SendAsync(message, boo);
             }
             catch(Exception e)
             {
-                Debug.WriteLine(e);
+                Debug.WriteLine("ERROR IN SENDING: " + e);
+                Debug.WriteLine("");
+                Debug.WriteLine("");
             }
         }
     }

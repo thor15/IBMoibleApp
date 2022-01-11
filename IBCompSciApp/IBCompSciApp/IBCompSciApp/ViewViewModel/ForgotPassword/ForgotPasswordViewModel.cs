@@ -2,6 +2,7 @@
 using MyFirstProject.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -26,7 +27,7 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword
             }
         }
 
-        public ICommand SendEmailClicked;
+        public ICommand SendEmailClicked { get; set; }
 
         public ForgotPasswordViewModel()
         {
@@ -36,22 +37,29 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword
         private async void SendEmailClickedAsync(object obj)
         {
             bool hasUser = false;
+
+            Debug.WriteLine("Can we make it here");
+            
             foreach (User user in CurrentUsers.AllUsers)
             {
                 if(user.Email.Equals(_emailText))
                 {
                     hasUser = true;
+                    break;
                 }
             }
 
             if(!hasUser)
             {
+                await Application.Current.MainPage.DisplayAlert("Forgot Password", "No Email Found", "Ok");
                 return;
             }
 
             CodeGeneration.GenerateCode();
             SendEmail.EmailUser(_emailText, CodeGeneration.code);
-            await Application.Current.MainPage.Navigation.PushAsync(new ForgotPassword.ForgotPasswordView());
+            await Application.Current.MainPage.Navigation.PushAsync(new CodeEntry.CodeEntryView());
         }
+
+        
     }
 }

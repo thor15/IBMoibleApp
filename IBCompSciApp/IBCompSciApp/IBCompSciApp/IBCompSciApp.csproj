@@ -17,11 +17,16 @@
 
   <ItemGroup>
     <Folder Include="ViewViewModel\BaseViewModel\" />
-    <Folder Include="ViewViewModel\ForgotPassword\CodeEntry\" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="ViewViewModel\ForgotPassword\CodeEntry\CodeEntryView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="ViewViewModel\ForgotPassword\ForgotPasswordView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ViewViewModel\ForgotPassword\ResetPassword\ResetPasswordView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="ViewViewModel\Home\HomePageView.xaml">
