@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IBCompSciApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,13 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword.ResetPassword
         public ResetPasswordView()
         {
             InitializeComponent();
-            BindingContext = new ResetPasswordViewModel();
+            
+        }
+
+        public ResetPasswordView(User user)
+        {
+            InitializeComponent();
+            BindingContext = new ResetPasswordViewModel(user);
         }
     }
 }

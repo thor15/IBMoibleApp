@@ -37,13 +37,13 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword
         private async void SendEmailClickedAsync(object obj)
         {
             bool hasUser = false;
-
-            Debug.WriteLine("Can we make it here");
+            User us = null;
             
             foreach (User user in CurrentUsers.AllUsers)
             {
                 if(user.Email.Equals(_emailText))
                 {
+                    us = user;
                     hasUser = true;
                     break;
                 }
@@ -57,7 +57,7 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword
 
             CodeGeneration.GenerateCode();
             SendEmail.EmailUser(_emailText, CodeGeneration.code);
-            await Application.Current.MainPage.Navigation.PushAsync(new CodeEntry.CodeEntryView());
+            await Application.Current.MainPage.Navigation.PushAsync(new CodeEntry.CodeEntryView(us));
         }
 
         

@@ -21,7 +21,8 @@
         <Entry Placeholder="Password"
                Text="{Binding PasswordText}"
                AbsoluteLayout.LayoutBounds="0.5,0.55, 200, 50"
-               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+               AbsoluteLayout.LayoutFlags="PositionProportional"
+               IsPassword="True"/>
 
         <Button Text="Login"
                 Command="{Binding LoginClicked}"

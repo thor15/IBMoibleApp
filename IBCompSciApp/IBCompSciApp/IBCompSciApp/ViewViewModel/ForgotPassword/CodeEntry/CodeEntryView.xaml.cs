@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IBCompSciApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,12 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword.CodeEntry
         public CodeEntryView()
         {
             InitializeComponent();
-            BindingContext = new CodeEntryViewModel();
+            
+        }
+        public CodeEntryView(User user) 
+        {
+            InitializeComponent();
+            BindingContext = new CodeEntryViewModel(user);
         }
     }
 }

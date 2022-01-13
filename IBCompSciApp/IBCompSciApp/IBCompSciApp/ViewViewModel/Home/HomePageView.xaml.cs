@@ -15,6 +15,7 @@ namespace IBCompSciApp.ViewViewModel.Home
         public HomePageView()
         {
             InitializeComponent();
+            BindingContext = new HomePageViewModel();
         }
     }
 }

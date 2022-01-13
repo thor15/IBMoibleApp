@@ -31,9 +31,12 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword.CodeEntry
 
         public int attempts = 0;
 
-        public CodeEntryViewModel()
+        public User user;
+
+        public CodeEntryViewModel(User us)
         {
             CheckCodeClickedClicked = new Command(CheckCodeClickedClickedAsync);
+            user = us;
         }
 
         private async void CheckCodeClickedClickedAsync(object obj)
@@ -55,7 +58,7 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword.CodeEntry
                 await Application.Current.MainPage.Navigation.PushAsync(new ForgotPasswordView());
             }
 
-            await Application.Current.MainPage.Navigation.PushAsync(new ResetPassword.ResetPasswordView());
+            await Application.Current.MainPage.Navigation.PushAsync(new ResetPassword.ResetPasswordView(user));
         }
 
         /*protected virtual void OnAppearing()
