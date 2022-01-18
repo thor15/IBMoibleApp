@@ -11,7 +11,7 @@ namespace IBCompSciApp.Models
     {
         public static bool WriteToFile(string a_FileName, string a_FileContents)
         {
-            var fullPath = Path.Combine("C:/Aiden Carr/IBMoibleApp/IBCompSciApp/IBCompSciApp/IBCompSciApp", a_FileName);
+            var fullPath = Path.Combine("C:\\Aiden Carr\\IBMoibleApp\\IBCompSciApp\\IBCompSciApp\\IBCompSciApp", a_FileName);
 
             try
             {

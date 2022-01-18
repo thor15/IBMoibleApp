@@ -6,5 +6,11 @@ namespace IBCompSciApp.ViewViewModel.ReadingTimes
 {
     class ReadingTimesViewModel
     {
+        
+
+        public ReadingTimesViewModel()
+        {
+
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace IBCompSciApp.ViewViewModel.ReadingTimes
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,6 +16,7 @@ namespace IBCompSciApp.ViewViewModel.ReadingTimes
         public ReadingTimesView()
         {
             InitializeComponent();
+            BindingContext = new ReadingTimesViewModel();
         }
     }
 }
