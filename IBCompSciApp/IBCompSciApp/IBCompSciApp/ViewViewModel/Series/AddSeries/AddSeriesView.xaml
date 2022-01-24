@@ -1,12 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IBCompSciApp.ViewViewModel.Series.AddSeries.AddSeriesView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="IBCompSciApp.ViewViewModel.Series.AddSeries.AddSeriesView"
+             xmlns:Model="clr-namespace:IBCompSciApp.Models"
+             xmlns:Local="clr-namespace:IBCompSciApp.ViewViewModel.Series.AddSeries">
+
+    <StackLayout>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Entry Text="{Binding TitleToLookFor}"
+                   Grid.Column="0"/>
+
+            <Button Text="Search"
+                    Grid.Column="1"
+                    Command="{Binding SearchClicked}"/>
+
+        </Grid>
+
+        
+
+
+        <CollectionView>
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Padding="0" x:DataType="Model:Series" Grid.Column="0">
+
+                            <!--<Label Text ="{Binding Title}"/>-->
+
+                        </StackLayout>
+
+                        <StackLayout Padding="0" x:DataType="Model:Series" Grid.Column="1">
+
+                            <!--<Label Text="{Binding Link}"
+                                   Grid.Column="1"/>-->
+
+                        </StackLayout>
+
+                        <StackLayout Padding="0" Grid.Column="2" x:DataType="Local:AddSeriesViewModel">
+
+                            <Button Text="Add"/>
+
+                        </StackLayout>
+
+                    </Grid>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+        
+            
+    </StackLayout>
+
 </ContentPage>

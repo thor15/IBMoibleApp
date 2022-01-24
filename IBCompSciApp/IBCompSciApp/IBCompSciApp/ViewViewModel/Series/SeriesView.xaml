@@ -1,12 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IBCompSciApp.ViewViewModel.Series.SeriesView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="IBCompSciApp.ViewViewModel.Series.SeriesView"
+             xmlns:Local="clr-namespace:IBCompSciApp.ViewViewModel.Series"
+             xmlns:Model="clr-namespace:IBCompSciApp.Models">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding OnAddClicked}"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+
+        <CollectionView x:Name="ItemListView"
+                        ItemsSource="{Binding Titles}">
+            
+            
+            
+        </CollectionView>
+            
+    </StackLayout>
+
 </ContentPage>

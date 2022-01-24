@@ -11,13 +11,27 @@ namespace IBCompSciApp.ViewViewModel.Home
     class HomePageViewModel : BaseViewModel
     {
 
+        public ICommand SeriesClicked { get; set; }
+        public ICommand BookClicked { get; set; }
         public ICommand TimesClicked { get; set; }
 
         public HomePageViewModel()
         {
             Title = "Home";
             SaveUsers();
+            SeriesClicked = new Command(SeriesClickedAsync);
+            BookClicked = new Command(BookClickedAsync);
             TimesClicked = new Command(TimesClickedAsync);
+        }
+
+        private async void SeriesClickedAsync(object obj)
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new Series.SeriesView());
+        }
+
+        private async void BookClickedAsync(object obj)
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new ReadingTimes.ReadingTimesView());
         }
 
         private async void TimesClickedAsync(object obj)

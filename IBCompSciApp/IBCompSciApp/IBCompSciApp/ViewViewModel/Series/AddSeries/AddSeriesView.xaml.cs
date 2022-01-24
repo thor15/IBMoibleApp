@@ -15,6 +15,7 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
         public AddSeriesView()
         {
             InitializeComponent();
+            BindingContext = new AddSeriesViewModel();
         }
     }
 }
