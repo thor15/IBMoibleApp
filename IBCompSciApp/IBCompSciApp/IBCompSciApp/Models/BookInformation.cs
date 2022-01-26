@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IBCompSciApp.Models
 {
-    public class Doc
+    public class BookInformation
     {
         public string key { get; set; }
         public string type { get; set; }

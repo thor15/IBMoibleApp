@@ -49,6 +49,7 @@ namespace IBCompSciApp.ViewViewModel.MainPage
             LoginClicked = new Command(LoginClickedAsync);
             ForgotPassClicked = new Command(ForgotPassClickedAsync);
             NewUserClicked = new Command(NewUserClickedAsync);
+            CurrentUsers.AllUsers.Add(new User("a", "p"));
             LoadUsers();
         }
 
@@ -69,10 +70,6 @@ namespace IBCompSciApp.ViewViewModel.MainPage
 
         private async void LoginClickedAsync(object obj)
         {
-            if(_emailText.CompareTo("a") == 0)
-            {
-                await Application.Current.MainPage.Navigation.PushAsync(new Home.HomePageView());
-            }
 
             bool hasEmail = false;
             User user = null;
@@ -101,7 +98,8 @@ namespace IBCompSciApp.ViewViewModel.MainPage
             _emailText = "";
             PasswordText = "";
 
-
+            CurrentUsers.ActiveUser = user;
+            
             await Application.Current.MainPage.Navigation.PushAsync(new Home.HomePageView());
         }
 

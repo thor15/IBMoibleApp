@@ -8,6 +8,8 @@ namespace IBCompSciApp.Models
     {
         public static List<User> AllUsers = new List<User>();
 
+        public static User ActiveUser;
+
         public override string ToString()
         {
             string users = "";
