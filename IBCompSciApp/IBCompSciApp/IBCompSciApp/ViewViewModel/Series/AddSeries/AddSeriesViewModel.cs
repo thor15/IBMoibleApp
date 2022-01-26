@@ -8,7 +8,6 @@ using Xamarin.Forms;
 using IBCompSciApp.Models;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Web;
 
 namespace IBCompSciApp.ViewViewModel.Series.AddSeries
 {
@@ -26,7 +25,7 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
 
         private async void SearchClickedData(object obj)
         {
-            string search = HttpUtility.UrlEncode(TitleToLookFor);
+            string search = WebUtility.UrlEncode(TitleToLookFor);
             
             Uri dataSource = new Uri("https://openlibrary.org/search.json?q=" + search);
 
