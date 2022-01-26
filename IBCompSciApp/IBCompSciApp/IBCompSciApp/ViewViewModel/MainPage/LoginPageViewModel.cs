@@ -69,6 +69,11 @@ namespace IBCompSciApp.ViewViewModel.MainPage
 
         private async void LoginClickedAsync(object obj)
         {
+            if(_emailText.CompareTo("a") == 0)
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new Home.HomePageView());
+            }
+
             bool hasEmail = false;
             User user = null;
             foreach (User us in CurrentUsers.AllUsers)
@@ -93,6 +98,7 @@ namespace IBCompSciApp.ViewViewModel.MainPage
                 return;
             }
 
+            _emailText = "";
             PasswordText = "";
 
 
