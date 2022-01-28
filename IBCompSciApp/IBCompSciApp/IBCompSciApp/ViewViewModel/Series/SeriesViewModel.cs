@@ -15,6 +15,18 @@ namespace IBCompSciApp.ViewViewModel.Series
 
         public ICommand OnAddClicked { get; set; }
 
+        public Command<BookInformation> RemoveSeries
+        {
+            get
+            {
+                return new Command<BookInformation>((BookInformation book) =>
+                {
+                    CurrentUsers.ActiveUser.Books.Remove(book);
+                });
+
+            }
+        }
+
         public SeriesViewModel()
         {
             OnAddClicked = new Command(OnAddClickedAsync);

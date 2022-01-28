@@ -9,15 +9,60 @@
         <ToolbarItem Text="Add" Command="{Binding OnAddClicked}"/>
     </ContentPage.ToolbarItems>
 
-    <StackLayout>
 
-        <CollectionView x:Name="ItemListView"
-                        ItemsSource="{Binding Titles}">
+    <StackLayout>
+    
+        <StackLayout HorizontalOptions="Center">
+
+            <Label Text="Current Books"/>
+
+        </StackLayout>
+
+        <StackLayout>
+
+            <CollectionView x:Name="ItemListView"
+                            ItemsSource="{Binding Titles}">
+
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="0.5*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Padding="0" x:DataType="Model:BookInformation" Grid.Column="0">
+
+                                <Label Text ="{Binding title}"/>
+
+                            </StackLayout>
+
+                            <StackLayout Padding="0" Grid.Column="2" >
+
+                                <Button Text="Remove"
+                                    Command="{Binding Path=BindingContext.RemoveSeries, Source={x:Reference ItemListView}}"
+                                    CommandParameter="{Binding .}"/>
+
+                            </StackLayout>
+
+                        </Grid>
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
             
-            
-            
-        </CollectionView>
-            
+        </StackLayout>
+
     </StackLayout>
 
 </ContentPage>

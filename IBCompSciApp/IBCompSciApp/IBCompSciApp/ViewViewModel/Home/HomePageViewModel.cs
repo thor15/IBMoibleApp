@@ -31,7 +31,7 @@ namespace IBCompSciApp.ViewViewModel.Home
 
         private async void BookClickedAsync(object obj)
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new ReadingTimes.ReadingTimesView());
+            await Application.Current.MainPage.Navigation.PushAsync(new NextBook.NextBookView());
         }
 
         private async void TimesClickedAsync(object obj)

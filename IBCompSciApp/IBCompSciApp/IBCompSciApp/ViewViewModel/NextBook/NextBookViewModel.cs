@@ -6,5 +6,10 @@ namespace IBCompSciApp.ViewViewModel.NextBook
 {
     class NextBookViewModel
     {
+
+        public NextBookViewModel()
+        {
+
+        }
     }
 }

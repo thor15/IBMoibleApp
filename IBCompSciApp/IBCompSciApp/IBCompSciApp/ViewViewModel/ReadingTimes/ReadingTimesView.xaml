@@ -7,8 +7,8 @@
 
     <StackLayout>
 
-        
-        
+        <DatePicker Date=""/>
+
         <CollectionView x:Name="ItemListView"
                         ItemsSource="{Binding }">
 
