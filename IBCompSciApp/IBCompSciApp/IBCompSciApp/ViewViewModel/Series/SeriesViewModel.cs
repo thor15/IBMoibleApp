@@ -5,13 +5,14 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using IBCompSciApp.Models;
+using System.Diagnostics;
 
 namespace IBCompSciApp.ViewViewModel.Series
 {
     class SeriesViewModel
     {
 
-        public ObservableCollection<string> Titles { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<BookInformation> BookInfo { get; set; }
 
         public ICommand OnAddClicked { get; set; }
 
@@ -27,24 +28,37 @@ namespace IBCompSciApp.ViewViewModel.Series
             }
         }
 
+        public Command<BookInformation> AddCommand
+        {
+            get
+            {
+
+                return new Command<BookInformation>((BookInformation book) =>
+                {
+
+                    Application.Current.MainPage.Navigation.PushAsync(new AddSeries.AddSeriesView());
+                    MessagingCenter.Subscribe<BookInformation>(this, "AddBook", async (data) =>
+                    {
+                        BookInfo.Add(data);
+                        Debug.WriteLine(BookInfo.Count);
+
+                        MessagingCenter.Unsubscribe<BookInformation>(this, "AddBook");
+                    });
+                });
+            }
+        }
+
         public SeriesViewModel()
         {
             OnAddClicked = new Command(OnAddClickedAsync);
-            LoadBooks();
+            BookInfo = new ObservableCollection<BookInformation>();
         }
 
-        private void LoadBooks()
-        {
-            foreach (BookInformation b in CurrentUsers.ActiveUser.Books)
-            {
-                Titles.Add(b.title);
-            }
-        }
+        
 
         private async void OnAddClickedAsync(object obj)
         {
             await Application.Current.MainPage.Navigation.PushAsync(new AddSeries.AddSeriesView());
-        }
-        
+        }     
     }
 }

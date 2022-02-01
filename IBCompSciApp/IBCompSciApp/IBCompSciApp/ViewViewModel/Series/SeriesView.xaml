@@ -1,68 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IBCompSciApp.ViewViewModel.Series.SeriesView"
-             xmlns:Local="clr-namespace:IBCompSciApp.ViewViewModel.Series"
-             xmlns:Model="clr-namespace:IBCompSciApp.Models">
-    
+             xmlns:Model="clr-namespace:IBCompSciApp.Models"
+             x:Class="IBCompSciApp.ViewViewModel.Series.SeriesView">
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding OnAddClicked}"/>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
     </ContentPage.ToolbarItems>
 
-
     <StackLayout>
-    
-        <StackLayout HorizontalOptions="Center">
 
-            <Label Text="Current Books"/>
+        <CollectionView ItemsSource="{Binding BookInfo}"
+                        x:Name="ItemListView">
 
-        </StackLayout>
+            <CollectionView.ItemTemplate>
 
-        <StackLayout>
+                <DataTemplate>
 
-            <CollectionView x:Name="ItemListView"
-                            ItemsSource="{Binding Titles}">
+                    <Grid>
 
-                <CollectionView.ItemTemplate>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <DataTemplate>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
 
-                        <Grid>
+                        <StackLayout Padding="0" x:DataType="Model:BookInformation" Grid.Column="0">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                            <Label Text ="{Binding title}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="CenterAndExpand"
+                                   TextColor="Black"
+                                   FontSize="Large"/>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                            </Grid.ColumnDefinitions>
+                        </StackLayout>
 
-                            <StackLayout Padding="0" x:DataType="Model:BookInformation" Grid.Column="0">
+                        <StackLayout Padding="0" Grid.Column="1" >
 
-                                <Label Text ="{Binding title}"/>
-
-                            </StackLayout>
-
-                            <StackLayout Padding="0" Grid.Column="2" >
-
-                                <Button Text="Remove"
+                            <Button Text="Remove"
                                     Command="{Binding Path=BindingContext.RemoveSeries, Source={x:Reference ItemListView}}"
                                     CommandParameter="{Binding .}"/>
 
-                            </StackLayout>
+                        </StackLayout>
 
-                        </Grid>
+                    </Grid>
 
-                    </DataTemplate>
+                </DataTemplate>
 
-                </CollectionView.ItemTemplate>
+            </CollectionView.ItemTemplate>
 
-            </CollectionView>
+        </CollectionView>
             
-        </StackLayout>
-
     </StackLayout>
 
 </ContentPage>

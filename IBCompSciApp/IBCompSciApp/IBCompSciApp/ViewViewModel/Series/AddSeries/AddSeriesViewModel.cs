@@ -30,9 +30,8 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
                 return new Command<BookInformation>((BookInformation book) =>
                 {
                     CurrentUsers.ActiveUser.Books.Add(book);
+                    MessagingCenter.Send<BookInformation>(book, "AddBook");
                     Application.Current.MainPage.Navigation.PopAsync();
-                    Application.Current.MainPage.Navigation.PopAsync();
-                    Application.Current.MainPage.Navigation.PushAsync(new Series.SeriesView());
                 });
 
             }
@@ -44,18 +43,18 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
             BookInfo = new ObservableCollection<BookInformation>();
         }
 
-        
+
 
         private async void SearchClickedData(object obj)
         {
             string search = WebUtility.UrlEncode(TitleToLookFor);
-            
+
             Uri dataSource = new Uri("https://openlibrary.org/search.json?q=" + search);
 
             //HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format(data));
 
             HttpClient client = new HttpClient();
-            
+
             HttpResponseMessage response = await client.GetAsync(dataSource);
             if (response.IsSuccessStatusCode)
             {
@@ -66,8 +65,8 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
                 SearchInformation apiData = JsonConvert.DeserializeObject<SearchInformation>(content);
 
                 foreach (BookInformation book in apiData.docs)
-                {
-                    if (book != null)
+                { 
+                    if (book != null && CheckAuthorKey(book, "OL79034A")
                     {
                         BookInfo.Add(book);
                     }
@@ -75,6 +74,27 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
 
                 Debug.WriteLine("aasfdasdf");
             }
+        }
+
+        private bool CheckAuthorKey(BookInformation book, string key)
+        {
+            bool hasKeys = false;
+
+            for(int i = 0; i < book.author_key.Count; i++)
+            {
+                if(book.author_key[i] != null)
+                {
+                    hasKeys = true;
+                    break;
+                }
+            }
+
+            if(hasKeys == false)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
