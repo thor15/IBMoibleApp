@@ -66,7 +66,7 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
 
                 foreach (BookInformation book in apiData.docs)
                 { 
-                    if (book != null && CheckAuthorKey(book, "OL79034A")
+                    if (book != null && CheckAuthorKey(book, "OL79034A"))
                     {
                         BookInfo.Add(book);
                     }
@@ -79,6 +79,11 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
         private bool CheckAuthorKey(BookInformation book, string key)
         {
             bool hasKeys = false;
+            
+            if(book.author_key == null)
+            {
+                return false;
+            }
 
             for(int i = 0; i < book.author_key.Count; i++)
             {
