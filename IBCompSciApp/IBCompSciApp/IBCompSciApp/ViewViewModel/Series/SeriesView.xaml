@@ -10,7 +10,7 @@
 
     <StackLayout>
 
-        <CollectionView ItemsSource="{Binding BookInfo}"
+        <CollectionView ItemsSource="{Binding SeriesInfo}"
                         x:Name="ItemListView">
 
             <CollectionView.ItemTemplate>
@@ -28,9 +28,9 @@
                             <ColumnDefinition Width="0.5*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackLayout Padding="0" x:DataType="Model:BookInformation" Grid.Column="0">
+                        <StackLayout Padding="0" x:DataType="Model:Series" Grid.Column="0">
 
-                            <Label Text ="{Binding title}"
+                            <Label Text ="{Binding seriesName}"
                                    HorizontalOptions="Center"
                                    VerticalOptions="CenterAndExpand"
                                    TextColor="Black"

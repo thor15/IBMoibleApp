@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IBCompSciApp.ViewViewModel.ReadingTimes.EditBookTime.EditBookTimeView">
+
+    <StackLayout>
+        
+        <Label Text="Start Date"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"/>
+
+        <DatePicker Date="{Binding StartDate, Mode=OneWayToSource}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"/>
+
+        <Label Text="End Date"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"/>
+
+        <DatePicker Date="{Binding EndDate, Mode=OneWayToSource}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"/>
+
+        <Button Text="Update Date"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Command="{Binding UdpateDate}"/>
+
+
+
+    </StackLayout>
+    
+</ContentPage>

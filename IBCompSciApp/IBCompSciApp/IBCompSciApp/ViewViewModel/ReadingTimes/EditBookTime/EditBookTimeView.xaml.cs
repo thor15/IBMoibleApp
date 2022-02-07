@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IBCompSciApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +8,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace IBCompSciApp.ViewViewModel.NextBook
+namespace IBCompSciApp.ViewViewModel.ReadingTimes.EditBookTime
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NextBookView : ContentPage
+    public partial class EditBookTimeView : ContentPage
     {
-        public NextBookView()
+        public EditBookTimeView(Book b)
         {
             InitializeComponent();
-            BindingContext = new NextBookViewModel();
+            BindingContext = new EditDateTimeViewModel(b);
         }
     }
 }

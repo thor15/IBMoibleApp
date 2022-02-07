@@ -7,10 +7,8 @@
 
     <StackLayout>
 
-        <DatePicker />
-
         <CollectionView x:Name="ItemListView"
-                        ItemsSource="{Binding }">
+                        ItemsSource="{Binding FinishedBooks}">
 
             <CollectionView.ItemTemplate>
 
@@ -20,20 +18,42 @@
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackLayout x:DataType="model:User">
+                        <StackLayout x:DataType="model:Book" Grid.Column="0" Grid.Row="0">
 
-                            <Label Text="{Binding }"/>
+                            <Label Text="{Binding bookInformation.title}"
+                                   FontSize="Medium"
+                                   HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="Center"
+                                   TextColor="Black"/>
                             
-
                         </StackLayout>
                         
+                        <StackLayout x:DataType="model:Book" Grid.Column="0" Grid.Row="1" Padding="-1">
+
+                            <Label Text="{Binding daysToRead.Days}"
+                                   FontSize="Medium"
+                                   HorizontalOptions="Center"
+                                   TextColor="Black"/>
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1">
+
+                            <Button Text="Edit Time"
+                                    Command="{Binding Path=BindingContext.EditTimesClicked, Source={x:Reference ItemListView}}"
+                                    CommandParameter="{Binding .}"/>
+
+                        </StackLayout>
+
+
                     </Grid>
                     
                 </DataTemplate>

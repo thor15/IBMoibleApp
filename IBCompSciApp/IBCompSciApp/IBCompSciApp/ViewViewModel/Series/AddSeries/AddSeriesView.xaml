@@ -30,7 +30,7 @@
 
 
 
-        <CollectionView ItemsSource="{Binding BookInfo}"
+        <CollectionView ItemsSource="{Binding SearchedForSeries}"
                         x:Name="ItemListView">
 
             <CollectionView.ItemTemplate>
@@ -46,23 +46,19 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.5*"/>
                             <ColumnDefinition Width="0.5*"/>
-                            <ColumnDefinition Width="0.5*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackLayout Padding="0" x:DataType="Model:BookInformation" Grid.Column="0">
+                        <StackLayout x:DataType="Model:Series" Grid.Column="0">
 
-                            <Label Text ="{Binding title}"/>
-
-                        </StackLayout>
-
-                        <StackLayout Padding="0" x:DataType="Model:BookInformation" Grid.Column="1">
-
-                            <Label Text="{Binding key, StringFormat='https://openlibrary.org{0}'}"
-                                   Grid.Column="1"/>
+                            <Label Text="{Binding seriesName}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="CenterAndExpand"
+                                   TextColor="Black"
+                                   FontSize="Large"/>
 
                         </StackLayout>
 
-                        <StackLayout Padding="0" Grid.Column="2" >
+                        <StackLayout Padding="0" Grid.Column="1" >
 
                             <Button Text="Add"
                                     Command="{Binding Path=BindingContext.AddToShelf, Source={x:Reference ItemListView}}"

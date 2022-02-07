@@ -19,13 +19,13 @@ namespace IBCompSciApp.Models
             private set;
         }
 
-        public List<BookInformation> Books{ get; set; }
+        public List<Series> AllSeries{ get; set; }
 
         public User(string e, string p)
         {
             Email = e;
             Password = p;
-            Books = new List<BookInformation>();
+            AllSeries = new List<Series>();
         }
 
 
