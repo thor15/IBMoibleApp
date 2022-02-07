@@ -38,7 +38,7 @@
                         
                         <StackLayout x:DataType="model:Book" Grid.Column="0" Grid.Row="1" Padding="-1">
 
-                            <Label Text="{Binding daysToRead.Days}"
+                            <Label Text="{Binding daysToRead.Days, StringFormat='Days: {0}'}"
                                    FontSize="Medium"
                                    HorizontalOptions="Center"
                                    TextColor="Black"/>

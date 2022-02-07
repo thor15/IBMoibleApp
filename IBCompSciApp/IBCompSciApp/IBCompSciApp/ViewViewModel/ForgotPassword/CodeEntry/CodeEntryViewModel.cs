@@ -44,7 +44,7 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword.CodeEntry
             int inputedCode;
             if(int.TryParse(_codeText,out inputedCode))
             {
-                if(inputedCode != CodeGeneration.code)
+                if(inputedCode != CodeGeneration.code && attempts < 3)
                 {
                     attempts++;
                     await Application.Current.MainPage.DisplayAlert("Code Entry", "Invalid Code", "Ok");
@@ -53,9 +53,8 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword.CodeEntry
             }
 
             if(attempts == 3)
-            {
-                await Application.Current.MainPage.DisplayAlert("Code Entry", "Reset Code", "Ok");
-                await Application.Current.MainPage.Navigation.PushAsync(new ForgotPasswordView());
+            { 
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
 
             await Application.Current.MainPage.Navigation.PushAsync(new ResetPassword.ResetPasswordView(user));
