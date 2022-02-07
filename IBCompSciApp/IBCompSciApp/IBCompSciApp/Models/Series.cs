@@ -8,19 +8,26 @@ namespace IBCompSciApp.Models
     public class Series
     {
 
-        public string Name = "";
+        public string seriesName { get; set; }
         public int LenghtOfSeries = 0;
+        public int CurrentBook = 0;
+        public List<Book> books;
         
 
-        public Series(string n, int l)
+        public Series(string n, List<Book> b)
         {
-            Name = n;
-            LenghtOfSeries = l;
+            seriesName = n;
+            books = b;
+
+            LenghtOfSeries = books.Count;
         }
 
-
-        public static List<Series> CurrentSeries = new List<Series>() { new Series("Lord of the Rings", 3), new Series("Harry Potter", 7), new Series("Dune", 6), 
-            new Series("Foundation", 3), new Series("Ser", 4) };
-        
+        public void IncreaseCurrentBook()
+        {
+            if(CurrentBook < LenghtOfSeries - 1)
+            {
+                CurrentBook++;
+            }
+        }
     }
 }

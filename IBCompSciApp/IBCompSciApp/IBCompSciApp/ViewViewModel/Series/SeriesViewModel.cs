@@ -12,37 +12,37 @@ namespace IBCompSciApp.ViewViewModel.Series
     class SeriesViewModel
     {
 
-        public ObservableCollection<BookInformation> BookInfo { get; set; }
+        public ObservableCollection<Models.Series> SeriesInfo { get; set; }
 
         public ICommand OnAddClicked { get; set; }
 
-        public Command<BookInformation> RemoveSeries
+        public Command<Models.Series> RemoveSeries
         {
             get
             {
-                return new Command<BookInformation>((BookInformation book) =>
+                return new Command<Models.Series>((Models.Series s) =>
                 {
-                    CurrentUsers.ActiveUser.Books.Remove(book);
+                    CurrentUsers.ActiveUser.AllSeries.Remove(s);
+                    SeriesInfo.Remove(s);
                 });
 
             }
         }
 
-        public Command<BookInformation> AddCommand
+        public Command<Models.Series> AddCommand
         {
             get
             {
 
-                return new Command<BookInformation>((BookInformation book) =>
+                return new Command<Models.Series>((Models.Series s) =>
                 {
 
                     Application.Current.MainPage.Navigation.PushAsync(new AddSeries.AddSeriesView());
-                    MessagingCenter.Subscribe<BookInformation>(this, "AddBook", async (data) =>
+                    MessagingCenter.Subscribe<Models.Series>(this, "AddBook", async (data) =>
                     {
-                        BookInfo.Add(data);
-                        Debug.WriteLine(BookInfo.Count);
+                        SeriesInfo.Add(data);
 
-                        MessagingCenter.Unsubscribe<BookInformation>(this, "AddBook");
+                        MessagingCenter.Unsubscribe<Models.Series>(this, "AddBook");
                     });
                 });
             }
@@ -51,10 +51,17 @@ namespace IBCompSciApp.ViewViewModel.Series
         public SeriesViewModel()
         {
             OnAddClicked = new Command(OnAddClickedAsync);
-            BookInfo = new ObservableCollection<BookInformation>();
+            SeriesInfo = new ObservableCollection<Models.Series>();
+            LoadSeries();
         }
 
-        
+        private void LoadSeries()
+        {
+            foreach (Models.Series series in CurrentUsers.ActiveUser.AllSeries)
+            {
+                SeriesInfo.Add(series);
+            }
+        }
 
         private async void OnAddClickedAsync(object obj)
         {

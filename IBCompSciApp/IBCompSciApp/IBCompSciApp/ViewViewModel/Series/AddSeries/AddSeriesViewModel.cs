@@ -15,7 +15,8 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
     class AddSeriesViewModel
     {
 
-        public ObservableCollection<BookInformation> BookInfo { get; }
+        public List<BookInformation> BookInfo { get; }
+        public ObservableCollection<Models.Series> SearchedForSeries { get; }
 
         public string TitleToLookFor { get; set; }
 
@@ -23,14 +24,14 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
 
 
 
-        public Command<BookInformation> AddToShelf
+        public Command<Models.Series> AddToShelf
         {
             get
             {
-                return new Command<BookInformation>((BookInformation book) =>
+                return new Command<Models.Series>((Models.Series s) =>
                 {
-                    CurrentUsers.ActiveUser.Books.Add(book);
-                    MessagingCenter.Send<BookInformation>(book, "AddBook");
+                    CurrentUsers.ActiveUser.AllSeries.Add(s);
+                    MessagingCenter.Send<Models.Series>(s, "AddBook");
                     Application.Current.MainPage.Navigation.PopAsync();
                 });
 
@@ -40,7 +41,8 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
         public AddSeriesViewModel()
         {
             SearchClicked = new Command(SearchClickedData);
-            BookInfo = new ObservableCollection<BookInformation>();
+            BookInfo = new List<BookInformation>();
+            SearchedForSeries = new ObservableCollection<Models.Series>();
         }
 
 
@@ -64,13 +66,28 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
 
                 SearchInformation apiData = JsonConvert.DeserializeObject<SearchInformation>(content);
 
+                string authorKey = apiData.docs[0].author_key[0];
+
                 foreach (BookInformation book in apiData.docs)
                 { 
-                    if (book != null && CheckAuthorKey(book, "OL79034A"))
+                    if (book != null && CheckAuthorKey(book, authorKey))
                     {
                         BookInfo.Add(book);
                     }
                 }
+                
+                List<Book> currentBooks = new List<Book>();
+
+                foreach (BookInformation book in BookInfo)
+                {
+                    currentBooks.Add(new Book(book));
+                }
+
+                
+
+                Models.Series series = new Models.Series(TitleToLookFor, currentBooks);
+
+                SearchedForSeries.Add(series);
 
                 Debug.WriteLine("aasfdasdf");
             }
@@ -79,10 +96,15 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
         private bool CheckAuthorKey(BookInformation book, string key)
         {
             bool hasKeys = false;
+            
+            if(book.author_key == null)
+            {
+                return false;
+            }
 
             for(int i = 0; i < book.author_key.Count; i++)
             {
-                if(book.author_key[i] != null)
+                if(book.author_key[i] != null && book.author_key[i].Equals(key))
                 {
                     hasKeys = true;
                     break;

@@ -42,6 +42,9 @@
     <EmbeddedResource Update="ViewViewModel\NextBook\NextBookView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="ViewViewModel\ReadingTimes\EditBookTime\EditBookTimeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="ViewViewModel\ReadingTimes\ReadingTimesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

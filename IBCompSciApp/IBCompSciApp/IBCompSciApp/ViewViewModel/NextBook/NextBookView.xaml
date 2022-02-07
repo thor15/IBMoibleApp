@@ -1,14 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Model="clr-namespace:IBCompSciApp.Models"
              x:Class="IBCompSciApp.ViewViewModel.NextBook.NextBookView">
-    
-        <StackLayout>
-            
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            
-        </StackLayout>
-    
+
+    <CollectionView ItemsSource="{Binding UseresBooks}"
+                        x:Name="ItemListView">
+
+        <CollectionView.ItemTemplate>
+
+            <DataTemplate>
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Padding="0" x:DataType="Model:BookInformation" Grid.Column="0">
+
+                        <Label Text ="{Binding title}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="CenterAndExpand"
+                                   TextColor="Black"
+                                   FontSize="Large"/>
+
+                    </StackLayout>
+
+                    <StackLayout Padding="0" Grid.Column="1" >
+
+                        <Button Text="Finished"
+                                    Command="{Binding Path=BindingContext.FinishedBook, Source={x:Reference ItemListView}}"
+                                    CommandParameter="{Binding .}"/>
+
+                    </StackLayout>
+
+                </Grid>
+
+            </DataTemplate>
+
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+
 </ContentPage>

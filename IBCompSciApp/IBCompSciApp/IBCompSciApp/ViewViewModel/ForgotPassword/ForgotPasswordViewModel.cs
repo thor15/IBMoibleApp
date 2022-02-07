@@ -49,9 +49,9 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword
                 }
             }
 
-            if(!hasUser)
+            if (!hasUser)
             {
-                await Application.Current.MainPage.DisplayAlert("Forgot Password", "No Email Found", "Ok");
+                await Application.Current.MainPage.DisplayAlert("forgot password", "no email found", "ok");
                 return;
             }
 
