@@ -40,10 +40,12 @@ namespace IBCompSciApp.ViewViewModel.Home
         }
 
         private void SaveUsers()
-        {
+        {/*
             CurrentUsers users = new CurrentUsers();
             string allUsers = users.ToString();
-            FileManager.WriteToFile("Users.txt", allUsers);
+            FileManager.WriteToFile("Users.txt", allUsers);*/
+
+            UserPersist.SaveUsers(CurrentUsers.AllUsers);
         }
     }
 }

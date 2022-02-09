@@ -99,6 +99,8 @@ namespace IBCompSciApp.ViewViewModel.NewUser
             }
 
             CurrentUsers.AllUsers.Add(new User(_emailText, _passwordText));
+            UserPersist.SaveUsers(CurrentUsers.AllUsers);
+
             Application.Current.MainPage.Navigation.PopAsync();
             return;
         }

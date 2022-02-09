@@ -24,7 +24,7 @@ namespace IBCompSciApp.ViewViewModel.ReadingTimes
                         int index = FinishedBooks.IndexOf(book);
                         FinishedBooks.Remove(book);
                         FinishedBooks.Insert(index, data);
-
+                        UserPersist.SaveUsers(CurrentUsers.AllUsers);
                         MessagingCenter.Unsubscribe<Book>(this, "EditTime");
                     });
                 });

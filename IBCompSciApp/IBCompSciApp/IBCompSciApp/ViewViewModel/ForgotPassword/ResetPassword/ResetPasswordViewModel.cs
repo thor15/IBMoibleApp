@@ -67,6 +67,9 @@ namespace IBCompSciApp.ViewViewModel.ForgotPassword.ResetPassword
             }
 
             userPassword.SetPassword(_secondPasswordText);
+
+            UserPersist.SaveUsers(CurrentUsers.AllUsers);
+
             await Application.Current.MainPage.Navigation.PopToRootAsync();
         }
     }

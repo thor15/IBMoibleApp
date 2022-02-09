@@ -50,22 +50,15 @@ namespace IBCompSciApp.ViewViewModel.MainPage
             ForgotPassClicked = new Command(ForgotPassClickedAsync);
             NewUserClicked = new Command(NewUserClickedAsync);
             CurrentUsers.AllUsers.Add(new User("a", "p"));
+
+            //UserPersist.SaveUsers(CurrentUsers.AllUsers);
+
             LoadUsers();
         }
 
         private void LoadUsers()
         {
-            FileManager.LoadFromFile("Users", out var allUsers);
-            if(string.IsNullOrEmpty(allUsers))
-            {
-                return;
-            }
-            string[] users = allUsers.Split(',');
-            for(int i = 0; i < users.Length; i++)
-            {
-                string[] user = users[i].Split(' ');
-                CurrentUsers.AllUsers.Add(new User(user[0], user[1]));
-            }
+            CurrentUsers.AllUsers = UserPersist.LoadUsers();
         }
 
         private async void LoginClickedAsync(object obj)

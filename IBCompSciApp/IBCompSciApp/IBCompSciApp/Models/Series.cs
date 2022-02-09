@@ -5,6 +5,7 @@ using System.Text;
 
 namespace IBCompSciApp.Models
 {
+    [Serializable]
     public class Series
     {
 
@@ -13,6 +14,10 @@ namespace IBCompSciApp.Models
         public int CurrentBook = 0;
         public List<Book> books;
         
+        public Series()
+        {
+
+        }
 
         public Series(string n, List<Book> b)
         {

@@ -28,7 +28,7 @@ namespace IBCompSciApp.ViewViewModel.NextBook
 
                     UseresBooks.Remove(book);
                     UseresBooks.Insert(indexToReplace, series.books[series.CurrentBook].bookInformation);
-
+                    UserPersist.SaveUsers(CurrentUsers.AllUsers);
                 });
             }
         }
@@ -41,5 +41,7 @@ namespace IBCompSciApp.ViewViewModel.NextBook
                 UseresBooks.Add(book.books[book.CurrentBook].bookInformation);
             }
         }
+
+
     }
 }

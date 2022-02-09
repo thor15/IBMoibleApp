@@ -23,6 +23,7 @@ namespace IBCompSciApp.ViewViewModel.Series
                 return new Command<Models.Series>((Models.Series s) =>
                 {
                     CurrentUsers.ActiveUser.AllSeries.Remove(s);
+                    UserPersist.SaveUsers(CurrentUsers.AllUsers);
                     SeriesInfo.Remove(s);
                 });
 
@@ -41,6 +42,8 @@ namespace IBCompSciApp.ViewViewModel.Series
                     MessagingCenter.Subscribe<Models.Series>(this, "AddBook", async (data) =>
                     {
                         SeriesInfo.Add(data);
+
+                        UserPersist.SaveUsers(CurrentUsers.AllUsers);
 
                         MessagingCenter.Unsubscribe<Models.Series>(this, "AddBook");
                     });

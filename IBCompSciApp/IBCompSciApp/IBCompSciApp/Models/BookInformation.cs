@@ -4,6 +4,7 @@ using System.Text;
 
 namespace IBCompSciApp.Models
 {
+    [Serializable]
     public class BookInformation
     {
         public string key { get; set; }

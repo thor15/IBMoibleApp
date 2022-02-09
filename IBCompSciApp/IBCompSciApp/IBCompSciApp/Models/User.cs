@@ -5,18 +5,19 @@ using Xamarin.Forms;
 
 namespace IBCompSciApp.Models
 {
+    [Serializable]
     public class User
     {
         public string Email
         {
             get;
-            private set;
+            set;
         }
 
         public string Password
         {
             get;
-            private set;
+            set;
         }
 
         public List<Series> AllSeries{ get; set; }
@@ -26,6 +27,10 @@ namespace IBCompSciApp.Models
             Email = e;
             Password = p;
             AllSeries = new List<Series>();
+        }
+        public User()
+        {
+
         }
 
 
