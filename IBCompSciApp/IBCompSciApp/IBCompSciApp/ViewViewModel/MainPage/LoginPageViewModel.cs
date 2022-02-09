@@ -88,7 +88,7 @@ namespace IBCompSciApp.ViewViewModel.MainPage
                 return;
             }
 
-            _emailText = "";
+            EmailText = "";
             PasswordText = "";
 
             CurrentUsers.ActiveUser = user;
