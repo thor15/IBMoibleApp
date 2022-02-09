@@ -13,6 +13,7 @@ namespace IBCompSciApp.Models
         public int LenghtOfSeries = 0;
         public int CurrentBook = 0;
         public List<Book> books;
+        public bool Finished = false;
         
         public Series()
         {
@@ -47,12 +48,14 @@ namespace IBCompSciApp.Models
 
         }
 
-        public void IncreaseCurrentBook()
+        public bool IncreaseCurrentBook()
         {
             if(CurrentBook < LenghtOfSeries - 1)
             {
                 CurrentBook++;
+                return true;
             }
+            return false;
         }
     }
 }

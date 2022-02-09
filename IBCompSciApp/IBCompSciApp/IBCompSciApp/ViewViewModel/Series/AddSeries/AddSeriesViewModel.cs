@@ -70,7 +70,7 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
 
                 foreach (BookInformation book in apiData.docs)
                 { 
-                    if (book != null && CheckAuthorKey(book, authorKey))
+                    if (book != null && CheckAuthorKey(book, authorKey) && !CheckBook(book))
                     {
                         BookInfo.Add(book);
                     }
@@ -88,9 +88,13 @@ namespace IBCompSciApp.ViewViewModel.Series.AddSeries
                 Models.Series series = new Models.Series(TitleToLookFor, currentBooks);
 
                 SearchedForSeries.Add(series);
-
-                Debug.WriteLine("aasfdasdf");
             }
+        }
+
+        private bool CheckBook(BookInformation book)
+        {
+            bool isInSeries = BookInfo.Contains(book);
+            return isInSeries;
         }
 
         private bool CheckAuthorKey(BookInformation book, string key)

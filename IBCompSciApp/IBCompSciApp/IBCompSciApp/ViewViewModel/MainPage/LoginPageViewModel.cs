@@ -49,9 +49,12 @@ namespace IBCompSciApp.ViewViewModel.MainPage
             LoginClicked = new Command(LoginClickedAsync);
             ForgotPassClicked = new Command(ForgotPassClickedAsync);
             NewUserClicked = new Command(NewUserClickedAsync);
-            CurrentUsers.AllUsers.Add(new User("a", "p"));
+            
 
             //UserPersist.SaveUsers(CurrentUsers.AllUsers);
+
+            EmailText = "";
+            PasswordText = "";
 
             LoadUsers();
         }
