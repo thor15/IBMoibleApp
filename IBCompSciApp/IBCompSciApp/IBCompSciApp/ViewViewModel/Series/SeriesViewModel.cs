@@ -39,7 +39,7 @@ namespace IBCompSciApp.ViewViewModel.Series
                 {
 
                     Application.Current.MainPage.Navigation.PushAsync(new AddSeries.AddSeriesView());
-                    MessagingCenter.Subscribe<Models.Series>(this, "AddBook", async (data) =>
+                    MessagingCenter.Subscribe<Models.Series>(this, "AddBook", (data) =>
                     {
                         SeriesInfo.Add(data);
 

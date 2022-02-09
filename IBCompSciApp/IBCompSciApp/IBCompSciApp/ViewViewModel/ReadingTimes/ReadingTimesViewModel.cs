@@ -19,7 +19,7 @@ namespace IBCompSciApp.ViewViewModel.ReadingTimes
                 return new Command<Book>((Book book) =>
                 {
                     Application.Current.MainPage.Navigation.PushAsync(new EditBookTime.EditBookTimeView(book));
-                    MessagingCenter.Subscribe<Book>(this, "EditTime", async (data) =>
+                    MessagingCenter.Subscribe<Book>(this, "EditTime", (data) =>
                     {
                         int index = FinishedBooks.IndexOf(book);
                         FinishedBooks.Remove(book);
